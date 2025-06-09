@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Payply Checkout</title>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    form { margin-bottom: 1em; }
+    input { margin-right: .5em; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    function App() {
+      const [amount, setAmount] = React.useState('');
+      const [currency, setCurrency] = React.useState('');
+      const [result, setResult] = React.useState('');
+
+      const handleSubmit = async (e) => {
+        e.preventDefault();
+        const res = await fetch('/api/payments', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ amount, currency })
+        });
+        const data = await res.json();
+        setResult(JSON.stringify(data, null, 2));
+      };
+
+      return (
+        <div>
+          <h1>Payply Checkout</h1>
+          <form onSubmit={handleSubmit}>
+            <input value={amount} onChange={e => setAmount(e.target.value)} placeholder="Amount" required />
+            <input value={currency} onChange={e => setCurrency(e.target.value)} placeholder="Currency" required />
+            <button type="submit">Pay with Crypto</button>
+          </form>
+          <pre>{result}</pre>
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>

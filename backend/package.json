@@ -1,0 +1,11 @@
+{
+  "name": "payply-backend",
+  "version": "0.1.0",
+  "description": "Backend para o sistema de pagamentos cripto",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js"
+  },
+  "author": "",
+  "license": "MIT"
+}
