@@ -45,5 +45,5 @@ Para rodar a demonstracao local, e necessario ter o Node.js instalado. Navegue a
 npm start
 ```
 
-Depois acesse `http://localhost:3000` para visualizar o formulario de pagamento simples.
+Depois acesse `http://localhost:3000` para visualizar a tela de checkout React integrada ao backend.
 
